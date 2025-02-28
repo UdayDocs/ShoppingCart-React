@@ -1,16 +1,15 @@
 // Variables
-$primary-color: #333;         // Dark color for text and main elements
-$secondary-color: #f5f5f5;    // Light gray for backgrounds
-$accent-color: #007bff;       // Vibrant blue for highlights and CTAs
-
+$primary-color: #333;
+$secondary-color: #f5f5f5;
+$accent-color: #007bff;
 $font-family: 'Roboto', sans-serif;
 $base-font-size: 16px;
 
-$spacing-xs: 0.5rem;   // 8px
-$spacing-sm: 1rem;     // 16px
-$spacing-md: 1.5rem;   // 24px
-$spacing-lg: 2rem;     // 32px
-$spacing-xl: 3rem;     // 48px
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 1.5rem;
+$spacing-lg: 2rem;
+$spacing-xl: 3rem;
 
 // Global Reset
 * {
@@ -25,6 +24,31 @@ body {
   color: $primary-color;
   background-color: $secondary-color;
   line-height: 1.6;
+  overflow-x: hidden;
+}
+
+// Background fix when toggle open
+body.cart-open {
+  overflow: hidden;
+}
+
+// Overlay for background fix when cart is open
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 850; // sits below the cart sidebar but above main content
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+body.cart-open .overlay {
+  opacity: 1;
+  visibility: visible;
 }
 
 // Navigation
@@ -39,7 +63,7 @@ nav {
   top: 0;
   z-index: 1000;
 
-  div.logo {
+  .logo {
     font-size: 1.5rem;
     font-weight: bold;
   }
@@ -48,28 +72,39 @@ nav {
     display: flex;
     align-items: center;
 
-    a {
+    a,
+    button {
       margin-left: $spacing-md;
       text-decoration: none;
       color: $primary-color;
       font-size: 1rem;
+      background: none;
+      border: none;
+      cursor: pointer;
       transition: color 0.3s ease;
 
       &:hover {
         color: $accent-color;
       }
+    }
 
-      &.cart-link {
-        position: relative;
+    .cart-toggle {
+      position: relative;
+      padding: $spacing-xs $spacing-sm;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
 
-        .cart-count {
-          background-color: $accent-color;
-          color: #fff;
-          border-radius: 50%;
-          padding: 2px 6px;
-          font-size: 0.8rem;
-          margin-left: 4px;
-        }
+      &:hover {
+        background-color: lighten($accent-color, 40%);
+      }
+
+      .cart-count {
+        background-color: $accent-color;
+        color: #fff;
+        border-radius: 50%;
+        padding: 2px 6px;
+        font-size: 0.8rem;
+        margin-left: 4px;
       }
     }
   }
@@ -173,238 +208,6 @@ nav {
   overflow-y: auto;
   transition: transform 0.3s ease;
   z-index: 900;
-
-  &.hidden {
-    transform: translateX(100%);
-  }
-
-  h2 {
-    font-size: 1.5rem;
-    margin-bottom: $spacing-md;
-  }
-
-  .cart-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: $spacing-md;
-    animation: slideIn 0.3s ease-out;
-
-    img {
-      width: 50px;
-      height: 50px;
-      object-fit: cover;
-      margin-right: $spacing-sm;
-    }
-
-    .item-info {
-      flex: 1;
-
-      h4 {
-        font-size: 1rem;
-        margin-bottom: $spacing-xs;
-      }
-
-      p {
-        font-size: 0.9rem;
-        color: $primary-color;
-      }
-    }
-
-    .remove-icon {
-      cursor: pointer;
-      color: $accent-color;
-      font-size: 1.2rem;
-      margin-left: $spacing-sm;
-      transition: color 0.3s ease;
-
-      &:hover {
-        color: darken($accent-color, 20%);
-      }
-    }
-  }
-
-  .checkout-section {
-    margin-top: $spacing-lg;
-
-    .total-price {
-      font-size: 1.2rem;
-      font-weight: bold;
-      margin-bottom: $spacing-sm;
-    }
-
-    button {
-      background-color: $accent-color;
-      color: #fff;
-      border: none;
-      padding: $spacing-sm $spacing-md;
-      border-radius: 4px;
-      cursor: pointer;
-      width: 100%;
-      transition: background-color 0.3s ease;
-
-      &:hover {
-        background-color: darken($accent-color, 10%);
-      }
-    }
-  }
-}
-
-// Animation for adding cart items
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-// Mobile adjustments
-@media (max-width: 768px) {
-  .cart-sidebar {
-    width: 100%;
-    height: 50%;
-    top: auto;
-    bottom: 0;
-    transform: translateY(100%);
-
-    &.open {
-      transform: translateY(0);
-    }
-  }
-
-  nav {
-    flex-wrap: wrap;
-    padding: $spacing-sm;
-
-    .nav-links {
-      margin-top: $spacing-sm;
-
-      a {
-        margin-left: $spacing-sm;
-        font-size: 0.9rem;
-      }
-    }
-  }
-
-  .product-grid {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: $spacing-sm;
-    padding: $spacing-sm;
-  }
-}
-
-// Buttons and Forms
-button {
-  font-family: $font-family;
-  font-size: $base-font-size;
-  cursor: pointer;
-}
-
-input {
-  font-family: $font-family;
-  font-size: $base-font-size;
-  padding: $spacing-xs;
-  border: 1px solid $primary-color;
-  border-radius: 4px;
-}
-
-
-
-// Variables
-$primary-color: #333;
-$secondary-color: #f5f5f5;
-$accent-color: #007bff;
-
-$font-family: 'Roboto', sans-serif;
-$base-font-size: 16px;
-
-$spacing-xs: 0.5rem;
-$spacing-sm: 1rem;
-$spacing-md: 1.5rem;
-$spacing-lg: 2rem;
-
-// Global Reset
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: $font-family;
-  font-size: $base-font-size;
-  color: $primary-color;
-  background-color: $secondary-color;
-  line-height: 1.6;
-}
-
-// Navigation
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: $spacing-sm $spacing-md;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-
-  .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-
-  .nav-links {
-    display: flex;
-    align-items: center;
-
-    a, button {
-      margin-left: $spacing-md;
-      text-decoration: none;
-      color: $primary-color;
-      font-size: 1rem;
-      transition: color 0.3s ease;
-      background: none;
-      border: none;
-      cursor: pointer;
-
-      &:hover {
-        color: $accent-color;
-      }
-
-      &.cart-toggle {
-        position: relative;
-
-        .cart-count {
-          background-color: $accent-color;
-          color: #fff;
-          border-radius: 50%;
-          padding: 2px 6px;
-          font-size: 0.8rem;
-          margin-left: 4px;
-        }
-      }
-    }
-  }
-}
-
-// Cart Sidebar
-.cart-sidebar {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 300px;
-  height: 100%;
-  background-color: #fff;
-  box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
-  padding: $spacing-md;
-  overflow-y: auto;
-  transition: transform 0.3s ease;
-  z-index: 900;
   transform: translateX(100%);
 
   &.open {
@@ -425,6 +228,7 @@ nav {
     display: flex;
     align-items: center;
     margin-bottom: $spacing-md;
+    animation: slideIn 0.3s ease-out;
 
     img {
       width: 50px;
@@ -515,6 +319,18 @@ nav {
   }
 }
 
+// Animation for cart item entrance
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 // Mobile Adjustments
 @media (max-width: 768px) {
   .cart-sidebar {
@@ -536,10 +352,32 @@ nav {
     .nav-links {
       margin-top: $spacing-sm;
 
-      a, button {
+      a,
+      button {
         margin-left: $spacing-sm;
         font-size: 0.9rem;
       }
     }
   }
+
+  .product-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: $spacing-sm;
+    padding: $spacing-sm;
+  }
+}
+
+// Buttons and Forms
+button {
+  font-family: $font-family;
+  font-size: $base-font-size;
+  cursor: pointer;
+}
+
+input {
+  font-family: $font-family;
+  font-size: $base-font-size;
+  padding: $spacing-xs;
+  border: 1px solid $primary-color;
+  border-radius: 4px;
 }
