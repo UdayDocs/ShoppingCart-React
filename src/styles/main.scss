@@ -2,6 +2,7 @@
 $primary-color: #333;
 $secondary-color: #f5f5f5;
 $accent-color: #007bff;
+$red-color: rgba(255, 3, 3, 0.849);
 $active-accent: lighten($accent-color, 40%);
 $font-family: 'Roboto', sans-serif;
 $base-font-size: 16px;
@@ -68,6 +69,16 @@ nav {
   .logo {
     font-size: 1.5rem;
     font-weight: bold;
+    margin-left: $spacing-md;
+    text-decoration: none;
+    color: $accent-color;
+    background: none;
+    cursor: pointer;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    
+    &:hover {
+      color: $red-color;
+    }
   }
 
   .nav-links {
@@ -124,6 +135,7 @@ nav {
   gap: $spacing-md;
   padding: $spacing-md;
 
+
   .product-card {
     background-color: #fff;
     border-radius: 8px;
@@ -144,6 +156,15 @@ nav {
 
     .product-info {
       padding: $spacing-sm;
+
+      .add-cart {
+        background-color: $red-color;
+        color: rgb(14, 13, 13);
+        
+        &:hover {
+          background-color: darken($red-color, 10%);
+        }
+      }
 
       h3 {
         font-size: 1.2rem;
@@ -282,8 +303,9 @@ nav {
     }
 
     button {
-      background-color: $accent-color;
-      color: #fff;
+      background-color: $red-color;
+      font-weight: bold;
+      color: #000000;
       border: none;
       padding: $spacing-sm $spacing-md;
       border-radius: 4px;
@@ -292,7 +314,7 @@ nav {
       transition: background-color 0.3s ease;
 
       &:hover {
-        background-color: darken($accent-color, 10%);
+        background-color: darken($red-color, 10%);
       }
     }
   }
@@ -393,5 +415,4 @@ input {
 ///////////////////////////////////////////////////////////////////
 /// 
 /// 
-
 

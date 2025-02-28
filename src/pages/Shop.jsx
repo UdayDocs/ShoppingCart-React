@@ -53,7 +53,7 @@ function Shop() {
               />
               <button onClick={() => changeQuantity(product.id, 1)}>+</button>
             </div>
-            <button onClick={() => addToCart(product, quantities[product.id])}>
+            <button className='add-cart' onClick={() => addToCart(product, quantities[product.id])}>
               Add to Cart
             </button>
           </div>

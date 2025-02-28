@@ -8,7 +8,7 @@ function NavBar({ onCartToggle, isCartOpen }) {
 
   return (
     <nav>
-      <div className="logo">ShopCart</div>
+      <Link to="/shop" className="logo">ShopCart</Link>
       <div className="nav-links">
         <Link to="/">Home</Link>
         <Link to="/shop">Shop</Link>
