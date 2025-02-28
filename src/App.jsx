@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Home from './pages/Home';
 import Shop from './pages/Shop';
 import Cart from './pages/Cart';
@@ -8,11 +8,23 @@ import { CartProvider } from './Components/CartContext';
 
 function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
+  useEffect(() => {
+    if (isCartOpen) {
+      document.body.classList.add('cart-open');
+    } else {
+      document.body.classList.remove('cart-open');
+    }
+  }, [isCartOpen]);
+
 
   return (
     <CartProvider>
       <Router>
-        <NavBar onCartToggle={() => setIsCartOpen(!isCartOpen)} />
+      <NavBar
+          onCartToggle={() => setIsCartOpen(!isCartOpen)}
+          isCartOpen={isCartOpen} // Pass isCartOpen if you want to style the toggle button
+        />
+        <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />

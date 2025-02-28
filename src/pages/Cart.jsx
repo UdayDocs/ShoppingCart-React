@@ -1,6 +1,6 @@
 import { useCart } from '../Components/CartContext';
 
-function Cart({ isOpen }) {
+function Cart({ isOpen,onClose }) {
   const { cart, removeFromCart } = useCart();
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
@@ -11,6 +11,8 @@ function Cart({ isOpen }) {
         <p>Cart is empty</p>
       ) : (
         <>
+          <div className={`cart-overlay ${isOpen ? 'active' : ''}`} onClick={onClose} />
+          <div className={`cart-sidebar ${isOpen ? 'open' : ''}`}></div>
           {cart.map((item) => (
             <div key={item.id} className="cart-item">
               <img src={item.image} alt={item.title} />
