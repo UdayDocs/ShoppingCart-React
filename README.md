@@ -64,3 +64,4 @@
 - [ ] Add User reviews and ratings system
 - [ ] Develop Wishlist functionality
 - [ ] Build Coupon/discount system
+- [ ] useReduce,usecallback
