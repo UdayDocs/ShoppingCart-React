@@ -10,24 +10,24 @@
 ## Features
 
 ### Core Functionality
-🛒 **Interactive Shopping Cart**  
+🛒 **Interactive Shopping Cart**
 - Real-time cart updates with quantity adjustment
 - Slide-out cart sidebar with overlay
 - Item removal functionality
 
-📦 **Product Management**  
+📦 **Product Management**
 - Fetches products from FakeStore API
 - Product grid with hover effects
 - Quantity selector for each item
 - "Add to Cart" with dynamic inventory management
 
-🎨 **Modern UI/UX**  
+🎨 **Modern UI/UX**
 - Responsive design for all screen sizes
 - Clean minimalist aesthetic
 - Smooth animations and transitions
 - Sticky navigation with cart counter
 
-🔧 **Technical Features**  
+🔧 **Technical Features**
 - React Context API for state management
 - SCSS modular styling
 - Mobile-first approach
@@ -36,31 +36,31 @@
 ## Future Enhancements
 
 ### Planned Improvements
-🔐 **User Authentication**  
-- Login/Registration system
-- User-specific cart persistence
+🔐 **User Authentication**
+- [ ] Implement Login/Registration system
+- [ ] Add User-specific cart persistence
 
-💳 **Payment Integration**  
-- Stripe/razorpay payment gateway
-- Order history tracking
+💳 **Payment Integration**
+- [ ] Integrate Stripe/Razorpay payment gateway
+- [ ] Develop Order history tracking feature
 
-🔍 **Enhanced Product Discovery**  
-- Search functionality
-- Category filters
-- Product sorting options
+🔍 **Enhanced Product Discovery**
+- [ ] Add Search functionality
+- [ ] Implement Category filters
+- [ ] Introduce Product sorting options (price, popularity, etc.)
 
-📱 **Progressive Web App**  
-- Offline capabilities
-- Add to Home screen
-- Service worker implementation
+📱 **Progressive Web App**
+- [ ] Enable Offline capabilities
+- [ ] Implement "Add to Home screen" functionality
+- [ ] Set up Service worker
 
-📈 **Performance Optimization**  
-- Product image lazy loading
-- Cart data local storage caching
-- Code splitting for better load times
+📈 **Performance Optimization**
+- [ ] Add Product image lazy loading
+- [ ] Implement Cart data local storage caching
+- [ ] Apply Code splitting for better load times
 
-🛍️ **Additional E-Commerce Features**  
-- Product detail pages
-- User reviews and ratings
-- Wishlist functionality
-- Coupon/discount system
+🛍️ **Additional E-Commerce Features**
+- [ ] Create Product detail pages
+- [ ] Add User reviews and ratings system
+- [ ] Develop Wishlist functionality
+- [ ] Build Coupon/discount system
