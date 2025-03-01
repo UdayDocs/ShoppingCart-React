@@ -5,6 +5,7 @@ import Shop from './pages/Shop';
 import Cart from './pages/Cart';
 import NavBar from './Components/NavBar';
 import { CartProvider } from './Components/CartContext';
+import Footer from './Components/Footer';
 
 function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -31,6 +32,7 @@ function App() {
           <Route path="/cart" element={<Cart isOpen={isCartOpen} />} />
         </Routes>
       </Router>
+      <Footer/>
     </CartProvider>
   );
 }

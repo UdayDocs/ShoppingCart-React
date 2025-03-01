@@ -325,6 +325,7 @@ nav {
   text-align: center;
   padding: $spacing-lg;
 
+
   h1 {
     font-size: 2rem;
     margin-bottom: $spacing-md;
@@ -378,6 +379,7 @@ nav {
   nav {
     flex-wrap: wrap;
     padding: $spacing-sm;
+    margin-bottom: auto; // Pushes footer down
 
     .nav-links {
       margin-top: $spacing-sm;
@@ -414,3 +416,40 @@ input {
 
 
 
+// Footer Styles
+.app-footer {
+  // background-color: darken($secondary-color, 5%);
+  padding: $spacing-md;
+  margin-top: auto;
+
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+
+    .github-link {
+      display: flex;
+      align-items: center;
+      gap: $spacing-xs;
+      color: $primary-color;
+      text-decoration: none;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $accent-color;
+      }
+    }
+
+    .github-icon {
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}
